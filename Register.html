@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICTaz Orientation Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Glassmorphic background text */
+        .background-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            white-space: nowrap;
+            z-index: -1;
+            user-select: none;
+            animation: float-text 10s infinite ease-in-out;
+        }
+
+        @keyframes float-text {
+            0%, 100% {
+                transform: translate(-50%, -50%) rotate(-5deg);
+            }
+            50% {
+                transform: translate(-50%, -50%) rotate(5deg);
+            }
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: float 6s infinite ease-in-out;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 60px; /* Space for the footer */
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus {
+            border-color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .entry {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .entry:last-child {
+            border-bottom: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add a glowing effect to the form */
+        form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+            animation: glow 6s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes glow {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Footer styling */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 10px 0;
+            color: #fff;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Glassmorphic background text -->
+    <div class="background-text">ICTAZ NIPA</div>
+
+    <h1>ICTaz Orientation Registration</h1>
+    <form id="registrationForm">
+        <div id="entries">
+            <div class="entry">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name"><br><br>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number"><br><br>
+            </div>
+        </div>
+        <button type="button" id="addEntry">Add Another Entry</button>
+        <button type="submit">Submit All Entries</button>
+    </form>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2023 ICTaz NIPA. All rights reserved. | <a href="#">Designed by Radico</a> 
+    </footer>
+
+    <script>
+        let entries = []; // Array to store all entries
+
+        // Function to add a new entry
+        document.getElementById('addEntry').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            // Validate phone number (example: 10 digits)
+            const phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return;
+            }
+
+            // Add the current entry to the array
+            entries.push({ name, phone });
+
+            // Clear the input fields for the next entry
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+
+            alert("Entry added! You can now enter the next one.");
+        });
+
+        // Function to handle form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            // Add the current entry to the array if it's not empty
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            if (name && phone) {
+                const phonePattern = /^\d{10}$/;
+                if (!phonePattern.test(phone)) {
+                    alert("Please enter a valid 10-digit phone number.");
+                    return;
+                }
+                entries.push({ name, phone });
+            }
+
+            // If no entries are added, show an alert
+            if (entries.length === 0) {
+                alert("No entries to submit!");
+                return;
+            }
+
+            // Compile all entries into a message
+            let message = 'New Registrations:\n';
+            entries.forEach((entry, index) => {
+                message += `\nEntry ${index + 1}:\nName: ${entry.name}\nPhone: ${entry.phone}\n`;
+            });
+
+            // Encode the message for WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+
+            // Show confirmation before redirecting
+            if (confirm("Are you sure you want to submit all entries?")) {
+                // Open WhatsApp with the pre-filled message
+                window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+            }
+        });
+    </script>
+</body>
+</html>
